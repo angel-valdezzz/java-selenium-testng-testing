@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.*;
 public class Bank {
     final WebDriver driver;
     final WebDriverWait wait;
-    final String username="qa"+UUID.randomUUID().toString().replace("-", "");
+    final String username="qa"+UUID.randomUUID().toString().replace("-", "").substring(0,18);
     final String password="DemoPass42!";
     Bank(WebDriver driver) { this.driver=driver; this.wait=new WebDriverWait(driver,Duration.ofSeconds(20)); }
     WebElement element(String id) { return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))); }
