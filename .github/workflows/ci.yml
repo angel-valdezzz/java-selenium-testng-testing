@@ -25,8 +25,13 @@ jobs:
       - name: Install
         run: |
           python -m pip --version
+      - name: Start isolated official ParaBank
+        run: python scripts/start_parabank.py
       - name: Execute real application scenarios
         run: python scripts/run.py -- mvn -B verify
+      - name: Stop isolated ParaBank
+        if: always()
+        run: docker rm --force parabank-under-test || true
       - name: Preserve native reports
         if: always()
         uses: actions/upload-artifact@v4
